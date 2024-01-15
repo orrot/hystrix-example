@@ -6,10 +6,11 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("com.microservices")
-public class HystrixExampleApplication {
+//@EnableHystrix
+public class CircuitBreakerExampleApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HystrixExampleApplication.class, args);
+		SpringApplication.run(CircuitBreakerExampleApplication.class, args);
 	}
 
 }
