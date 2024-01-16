@@ -12,7 +12,7 @@ public class GreetingController {
     @GetMapping("greeting/{name}")
     public String greet(@PathVariable String name) throws InterruptedException {
 
-        int random = NumberUtils.generateRandomNumber(2, 7);
+        int random = NumberUtils.generateRandomNumber(3, 7);
         Thread.sleep(random * 1_000L);
         return "Hi " + name + "!";
     }

@@ -18,13 +18,11 @@ public class FuncionalProgrammingHelloController {
 
     @GetMapping("hello-fun/{name}")
     public CompletableFuture<String> sayHelloFun(@PathVariable String name) {
-//        return TimeLimiter.of(Duration.ofSeconds(4L))
-//                .decorateFutureSupplier(() -> CompletableFuture
-//                        .supplyAsync(() -> circuitBreakerHelloService.sayHello(name)));
         return TimeLimiter.of(Duration.ofSeconds(4L))
                 .executeCompletionStage(
                         Executors.newSingleThreadScheduledExecutor(),
-                        () -> CompletableFuture.supplyAsync(() -> circuitBreakerHelloService.sayHello(name)))
+                        () -> CompletableFuture.supplyAsync(
+                                () -> circuitBreakerHelloService.sayHello(name)))
                 .toCompletableFuture();
     }
 }
