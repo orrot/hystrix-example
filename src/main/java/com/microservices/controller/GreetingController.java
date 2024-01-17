@@ -4,8 +4,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Random;
-
 @RestController
 public class GreetingController {
 
@@ -17,7 +15,15 @@ public class GreetingController {
         return "Hi " + name + "!";
     }
 
-    private String defaultGreeting(String username) {
-        return "Hello User!";
+    @GetMapping("greeting-with-fails/{name}")
+    public String greetWithFails(@PathVariable String name) {
+
+        int random = NumberUtils.generateRandomNumber(1, 3);
+
+        if (random == 1) {
+            throw new IllegalArgumentException("Error when processing " + name);
+        }
+
+        return "Hi " + name + "!";
     }
 }
